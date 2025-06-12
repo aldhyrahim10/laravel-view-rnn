@@ -17,6 +17,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Actions\Action;
 
 class RecordResource extends Resource
 {
@@ -35,7 +36,7 @@ class RecordResource extends Resource
 
                 FileUpload::make('attachment')
                     ->label('Attachment')
-                    ->rules('mimes:csv')
+                    ->rules('mimes:csv,xlsx')
                     ->required()
             ]);
     }
@@ -51,8 +52,16 @@ class RecordResource extends Resource
                 //
             ])
             ->actions([
+                Action::make('process')
+                    ->label('Process')  
+                    ->icon('heroicon-o-cog')
+                    ->color('success')
+                    ->url(fn (RecordData $record) => route('filament.admin.pages.process-data', ['record' => $record->id])),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                
+                    // ->url(fn (Post $record): string => route('posts.edit', $record))
+                    // ->openUrlInNewTab()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
