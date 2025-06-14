@@ -208,38 +208,6 @@
                     <thead class="bg-gray-100 dark:bg-gray-800">
                         <tr>
                             <th class="px-4 py-2 font-medium text-left text-gray-700 dark:text-gray-300">No</th>
-                            <th class="px-4 py-2 font-medium text-left text-gray-700 dark:text-gray-300">Model
-                            </th>
-                            <th class="px-4 py-2 font-medium text-left text-gray-700 dark:text-gray-300">Nilai</th>
-
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
-                        @foreach([
-                            [1, "MAE", 299.65],
-                            [2, "RMSE", 313.12],
-                            [3, "R2", -0.100],
-                            [4, "MAPE", "24.90%"],
-                            [5, "AIC", 58706.4],
-                            ] as $row)
-                            <tr>
-                                <td class="px-4 py-2 text-gray-900 dark:text-gray-100">{{ $row[0] }}</td>
-                                <td class="px-4 py-2 text-gray-900 dark:text-gray-100">{{ $row[1] }}</td>
-                                <td class="px-4 py-2 text-gray-900 dark:text-gray-100">{{ $row[2] }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div x-show="section === 'evaluation'" x-transition class="mt-3">
-            <h2 class="text-xl font-semibold mb-2">Table Evaluasi</h2>
-            <div class="w-full mt-6 overflow-x-auto rounded-lg shadow border border-gray-200 dark:border-gray-700">
-                <table class="w-full table-auto text-sm divide-y divide-gray-200 dark:divide-gray-700">
-                    <thead class="bg-gray-100 dark:bg-gray-800">
-                        <tr>
-                            <th class="px-4 py-2 font-medium text-left text-gray-700 dark:text-gray-300">No</th>
                             <th class="px-4 py-2 font-medium text-left text-gray-700 dark:text-gray-300">Tahun / Bulan
                             </th>
                             <th class="px-4 py-2 font-medium text-left text-gray-700 dark:text-gray-300">Total</th>
@@ -258,6 +226,39 @@
                                 <td class="px-4 py-2 text-gray-900 dark:text-gray-100">{{ $row[1] }}</td>
                                 <td class="px-4 py-2 text-gray-900 dark:text-gray-100">
                                     {{ number_format($row[2], 2) }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+
+        <div x-show="section === 'evaluation'" x-transition class="mt-3">
+            <h2 class="text-xl font-semibold mb-2">Table Evaluasi</h2>
+            <div class="w-full mt-6 overflow-x-auto rounded-lg shadow border border-gray-200 dark:border-gray-700">
+                <table class="w-full table-auto text-sm divide-y divide-gray-200 dark:divide-gray-700">
+                    <thead class="bg-gray-100 dark:bg-gray-800">
+                        <tr>
+                            <th class="px-4 py-2 font-medium text-left text-gray-700 dark:text-gray-300">No</th>
+                            <th class="px-4 py-2 font-medium text-left text-gray-700 dark:text-gray-300">Model
+                            </th>
+                            <th class="px-4 py-2 font-medium text-left text-gray-700 dark:text-gray-300">Nilai</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+                        @foreach([
+                            [1, "MAE", 299.65],
+                            [2, "RMSE", 313.12],
+                            [3, "R2", -0.100],
+                            [4, "MAPE", "24.90%"],
+                            [5, "AIC", 58706.4],
+                            ] as $row)
+                            <tr>
+                                <td class="px-4 py-2 text-gray-900 dark:text-gray-100">{{ $row[0] }}</td>
+                                <td class="px-4 py-2 text-gray-900 dark:text-gray-100">{{ $row[1] }}</td>
+                                <td class="px-4 py-2 text-gray-900 dark:text-gray-100">{{ $row[2] }}</td>
                             </tr>
                         @endforeach
                     </tbody>
