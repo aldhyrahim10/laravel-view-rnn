@@ -45,8 +45,13 @@ class RecordResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title'),
+                TextColumn::make('title')
+                    ->label('Title')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('attachment')
+                    ->label('Attachment')
+                    ->sortable(),
             ])
             ->filters([
                 //
