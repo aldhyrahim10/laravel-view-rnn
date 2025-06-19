@@ -3,7 +3,9 @@ namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
 use App\Models\RecordData;
+use App\Models\APIList;
 use Illuminate\Support\Facades\Http;
+
 
 
 class ProcessData extends Page
@@ -35,7 +37,7 @@ class ProcessData extends Page
 
     public array $cities = [];
 
-    public array $dataNormalization = [];
+    // public array $dataNormalization = [];
 
     public array $dataTrainTest = [];
 
@@ -45,6 +47,11 @@ class ProcessData extends Page
 
     public function mount(RecordData $record)
     {
+
+        $apiData = APIList::first();
+
+        $url = $apiData->url;
+
         $this->record = $record;
 
         $filePath = storage_path("app/public/" . $record->attachment);
@@ -58,21 +65,21 @@ class ProcessData extends Page
             'file',
             file_get_contents($filePath),
             $record->attachment
-        )->post('https://f1aa-35-230-187-93.ngrok-free.app/api/urea', [
+        )->post( $url . 'api/urea', [
             'wilayah' => $wilayah
         ]);
 
         $this->dataUreaJSON = $response->json();
 
         // Panggil endpoint lainnya
-        $response2 = Http::get('https://f1aa-35-230-187-93.ngrok-free.app/api/normalization');
-        $this->dataNormalization = $response2->json();
+        // $response2 = Http::get($url . 'api/normalization');
+        // $this->dataNormalization = $response2->json();
 
         $response3 = Http::attach(
             'file',
             file_get_contents($filePath),
             $record->attachment
-        )->post('https://f1aa-35-230-187-93.ngrok-free.app/api/traintest', [
+        )->post($url . 'api/traintest', [
             'wilayah' => $wilayah
         ]);
         
@@ -83,7 +90,7 @@ class ProcessData extends Page
             'file',
             file_get_contents($filePath),
             $record->attachment
-        )->post('https://f1aa-35-230-187-93.ngrok-free.app/api/forecasting', [
+        )->post($url . 'api/forecasting', [
             'wilayah' => $wilayah
         ]);
 
@@ -93,7 +100,7 @@ class ProcessData extends Page
             'file',
             file_get_contents($filePath),
             $record->attachment
-        )->post('https://f1aa-35-230-187-93.ngrok-free.app/api/evaluation', [
+        )->post($url . 'api/evaluation', [
             'wilayah' => $wilayah
         ]);
 

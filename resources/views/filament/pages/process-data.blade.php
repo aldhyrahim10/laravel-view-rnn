@@ -102,7 +102,7 @@
         </div>
 
 
-        <div x-show="section === 'normalization'" x-transition>
+        {{-- <div x-show="section === 'normalization'" x-transition>
             <h2 class="text-xl font-semibold mb-4">Normalitation</h2>
 
             <div class="w-full overflow-x-auto rounded-lg shadow border border-gray-200 dark:border-gray-700">
@@ -135,7 +135,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div> --}}
 
 
         <div x-show="section === 'train_test'" x-transition>
@@ -202,7 +202,7 @@
                             <th class="px-4 py-2 font-medium text-left text-gray-700 dark:text-gray-300">No</th>
                             <th class="px-4 py-2 font-medium text-left text-gray-700 dark:text-gray-300">Tahun / Bulan
                             </th>
-                            <th class="px-4 py-2 font-medium text-left text-gray-700 dark:text-gray-300">Total</th>
+                            <th class="px-4 py-2 font-medium text-left text-gray-700 dark:text-gray-300">Prediksi RNN</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
